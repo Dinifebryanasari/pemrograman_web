@@ -1,0 +1,439 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Manajemen Kelas",
+        "description": "API untuk mengelola data kelas",
+        "contact": {
+            "email": "admin@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://my-default-host.com",
+            "description": "Server API Lokal"
+        },
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/anaks": {
+            "get": {
+                "tags": [
+                    "Anak"
+                ],
+                "summary": "Ambil semua data anak",
+                "operationId": "1635425fdf12577afcc7ddf050938a95",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Anak"
+                ],
+                "summary": "Simpan data anak baru",
+                "operationId": "715f89f2fc55b7d3d08ce3b4581afcd4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama",
+                                    "tanggal_lahir",
+                                    "jenis_kelamin",
+                                    "nama_ortu",
+                                    "alamat",
+                                    "kelas_id"
+                                ],
+                                "properties": {
+                                    "nama": {
+                                        "type": "string",
+                                        "example": "Rani"
+                                    },
+                                    "tanggal_lahir": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2019-10-10"
+                                    },
+                                    "jenis_kelamin": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Laki-laki",
+                                            "Perempuan"
+                                        ],
+                                        "example": "Perempuan"
+                                    },
+                                    "nama_ortu": {
+                                        "type": "string",
+                                        "example": "Budi"
+                                    },
+                                    "alamat": {
+                                        "type": "string",
+                                        "example": "Jl. Mawar No. 123"
+                                    },
+                                    "kelas_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Data anak berhasil ditambahkan"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/anaks/{id}": {
+            "get": {
+                "tags": [
+                    "Anak"
+                ],
+                "summary": "Ambil detail anak berdasarkan ID",
+                "operationId": "ef445232dd3ab2c0d6e13317e21a1dfb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil"
+                    },
+                    "404": {
+                        "description": "Data anak tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Anak"
+                ],
+                "summary": "Perbarui data anak",
+                "operationId": "5f484754d3843426e479c9c0e036deb9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama": {
+                                        "type": "string",
+                                        "example": "Rani"
+                                    },
+                                    "tanggal_lahir": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2019-10-10"
+                                    },
+                                    "jenis_kelamin": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Laki-laki",
+                                            "Perempuan"
+                                        ],
+                                        "example": "Perempuan"
+                                    },
+                                    "nama_ortu": {
+                                        "type": "string",
+                                        "example": "Budi"
+                                    },
+                                    "alamat": {
+                                        "type": "string",
+                                        "example": "Jl. Mawar No. 123"
+                                    },
+                                    "kelas_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data anak berhasil diperbarui"
+                    },
+                    "404": {
+                        "description": "Data anak tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Anak"
+                ],
+                "summary": "Hapus data anak",
+                "operationId": "9c74cf9a00a2d6ac109f8fa1ba2cfda3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data anak berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Data anak tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/kelas": {
+            "get": {
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Ambil semua data kelas",
+                "operationId": "a842dceab7179190369d7fda5e932151",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil data kelas"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Simpan data kelas baru",
+                "operationId": "6a459e7c81b60aa1f1fdee780a766002",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_kelas",
+                                    "tahun_ajaran"
+                                ],
+                                "properties": {
+                                    "nama_kelas": {
+                                        "type": "string",
+                                        "example": "TK A"
+                                    },
+                                    "tahun_ajaran": {
+                                        "type": "string",
+                                        "example": "2024/2025"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Kelas berhasil ditambahkan"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/kelas/{id}": {
+            "get": {
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Ambil detail kelas berdasarkan ID",
+                "operationId": "9f5c73027af12ee19534f3c73a01e2e8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID kelas",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil"
+                    },
+                    "404": {
+                        "description": "Kelas tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Perbarui data kelas",
+                "operationId": "433c8c1bd281ec3293d810a500741ad9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID kelas",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama_kelas": {
+                                        "type": "string",
+                                        "example": "TK B"
+                                    },
+                                    "tahun_ajaran": {
+                                        "type": "string",
+                                        "example": "2025/2026"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Kelas berhasil diperbarui"
+                    },
+                    "404": {
+                        "description": "Kelas tidak ditemukan"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Kelas"
+                ],
+                "summary": "Hapus kelas berdasarkan ID",
+                "operationId": "d53494148ab69ded8f45e84a0016f456",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID kelas",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Kelas berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Kelas tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "name": "X-API-KEY",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Anak",
+            "description": "Manajemen Data Anak TK"
+        },
+        {
+            "name": "Kelas",
+            "description": "Manajemen Data Kelas"
+        }
+    ]
+}

@@ -19,6 +19,7 @@ services:
     ports:
       - "13306:3306"
     volumes:
+      - ./src:/var/www/html
       - ./db/data:/var/lib/mysql
       - ./db/conf.d:/etc/mysql/conf.d:ro
     environment:

@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 
 class KelasResource extends Resource
 {
@@ -23,12 +25,13 @@ class KelasResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_kelas')
+                TextInput::make('nama_kelas')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('tahun_ajaran')
+                    ->label('Nama Kelas'),
+    
+                TextInput::make('tahun_ajaran')
                     ->required()
-                    ->maxLength(255),
+                    ->label('Tahun Ajaran'),
             ]);
     }
 
@@ -36,18 +39,8 @@ class KelasResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama_kelas')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('tahun_ajaran')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('nama_kelas')->label('Nama Kelas'),
+                TextColumn::make('tahun_ajaran')->label('Tahun Ajaran'),
             ])
             ->filters([
                 //

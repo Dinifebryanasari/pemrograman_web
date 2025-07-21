@@ -20,9 +20,3 @@ Livewire::setScriptRoute(function ($handle) {
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/anaks/create', [AnakController::class, 'create']);
-
-Route::post('/anaks', [AnakController::class, 'store'])->name('anaks.store');
-Route::get('/api/documentation', function () {
-    return view('vendor.l5-swagger.index');
-});
